@@ -22,7 +22,7 @@ class Mainviewmodel @Inject constructor(private val userRepository: UserReposito
           val response:LiveData<Network<List<User>>> = _response
 
 
-    fun fetchUsers() = viewModelScope.launch {
+    fun getUsers() = viewModelScope.launch {
 
         userRepository.getUsers().collect {
 
