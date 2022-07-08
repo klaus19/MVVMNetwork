@@ -1,10 +1,7 @@
 package com.example.mvvmnetwork.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+
+import androidx.lifecycle.*
 import com.example.mvvmnetwork.data.api.User
 import com.example.mvvmnetwork.repository.UserRepository
 import com.example.mvvmnetwork.sealed.Network
@@ -14,8 +11,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class Mainviewmodel @Inject constructor(private val userRepository: UserRepository,
-      application: Application):AndroidViewModel(application) {
+class Mainviewmodel @Inject internal constructor(private val userRepository: UserRepository,
+      ):ViewModel() {
 
           private val _response:MutableLiveData<Network<List<User>>> = MutableLiveData()
 

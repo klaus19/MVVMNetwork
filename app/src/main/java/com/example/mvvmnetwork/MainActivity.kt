@@ -2,8 +2,10 @@ package com.example.mvvmnetwork
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ProgressBar
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +15,7 @@ import com.example.mvvmnetwork.viewmodel.Mainviewmodel
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mainViewmodel:Mainviewmodel
+   private val mainViewmodel:Mainviewmodel by viewModels()
     lateinit var mainAdapter: MainAdapter
     lateinit var recyclerView: RecyclerView
     lateinit var progressBar:ProgressBar
@@ -25,17 +27,23 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
-
-
-
-
         setupAdapter()
         setupObserver()
 
     }
 
     private fun setupObserver() {
-        mainViewmodel = ViewModelProvider(this).get(Mainviewmodel::class.java)
+
+        mainViewmodel.response.observe(this){ results ->
+            results.data?.let { users->
+                progressBar.isVisible = users.isEmpty()
+                recyclerView.isVisible = users.isNotEmpty()
+                mainAdapter.addData(users)
+
+            }
+
+        }
+        mainViewmodel.getUsers()
     }
 
     
