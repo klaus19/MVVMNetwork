@@ -1,18 +1,19 @@
-package com.example.mvvmnetwork
+package com.example.mvvmnetwork.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mvvmnetwork.R
 import com.example.mvvmnetwork.adapter.MainAdapter
 import com.example.mvvmnetwork.viewmodel.Mainviewmodel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
    private val mainViewmodel:Mainviewmodel by viewModels()
@@ -24,8 +25,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        recyclerView = findViewById(R.id.recyclerView)
+        progressBar = findViewById(R.id.progressBar)
 
         setupAdapter()
         setupObserver()

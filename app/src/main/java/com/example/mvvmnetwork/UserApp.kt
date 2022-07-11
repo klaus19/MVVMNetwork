@@ -1,10 +1,11 @@
 package com.example.mvvmnetwork
 
-import android.app.Activity
+
+import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class UserApp:Activity() {
+class UserApp:Application() {
 
 
 }
