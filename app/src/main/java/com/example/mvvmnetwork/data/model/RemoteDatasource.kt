@@ -4,5 +4,5 @@ import javax.inject.Inject
 
 class RemoteDatasource @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun getUsers() = apiService.getUsers()
+     fun getUsers() = apiService.getUsers()
 }
